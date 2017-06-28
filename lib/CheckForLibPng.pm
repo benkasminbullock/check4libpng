@@ -19,13 +19,54 @@ use Config qw/%Config/;
 my $png_lib_dir;
 my $png_include_dir;
 
+sub find_program
+{
+    my ($program, $verbose) = @_;
+    if ($verbose) {
+        print "I am going to look for $program in the list of directories in your PATH.\n";
+    }
+    my $found;
+    if ($ENV{PATH}) {
+        my @path = split /:/, $ENV{PATH};
+        for my $dir (@path) {
+            if ($verbose) {
+                print "Looking in '$dir' for '$program': ";
+            }
+            my $dprogram = "$dir/$program";
+            if (-f $dprogram && -x $dprogram) {
+                if ($verbose) {
+                    print "Found.\n";
+                }
+                $found = $dprogram;
+                last;
+            }
+            if ($verbose) {
+                print "Not found.\n";
+            }
+        }
+    }
+    else {
+        if ($verbose) {
+            print "There is no PATH environment variable.\n";
+        }
+    }
+    return $found;
+}
+
+
+
 sub check_for_libpng
 {
 
     # The following variable switches on printing of non-error messages
 
-    my $verbose;		# = 1;
+    my ($verbose) = @_;
 
+    if ($verbose) {
+	print <<EOF;
+Debugging messages in check_for_libpng are switched on.
+EOF
+    }
     # $inc is a flag for the C compiler to tell it where to find header
     # files.
 

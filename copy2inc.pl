@@ -4,7 +4,7 @@ use strict;
 use utf8;
 use FindBin '$Bin';
 use File::Copy;
-use Deploy 'newer';
+use Deploy 'older';
 my $dir = $ARGV[0];
 if (! $dir) {
     die "Specify a directory on the command line";
