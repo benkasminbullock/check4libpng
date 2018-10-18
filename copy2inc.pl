@@ -16,8 +16,12 @@ my $file = 'CheckForLibPng.pm';
 my $our = "$Bin/lib/$file";
 die "No $our" unless -f $our;
 my $their = "$dir/$file";
+if (-f $their) {
+    chmod 0644, $their or die $!;
+}
 if (older ($their, $our)) {
     copy $our, $their or die $!;
 }
+chmod 0444, $their or die $!;
 exit;
 
