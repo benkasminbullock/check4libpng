@@ -5,6 +5,8 @@
 #  \____|_| |_|\___|\___|_|\_\ |_|  \___/|_|    |_|_|_.__/| .__/|_| |_|\__, |
 #                                                         |_|          |___/ 
 #
+# Repository: https://github.com/benkasminbullock/check4libpng
+#
 # This file lives in ~/projects/check4libpng/lib and should be copied
 # from there.
 #
